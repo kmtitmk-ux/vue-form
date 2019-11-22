@@ -12560,24 +12560,7 @@ module.exports = g;
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('input-field', {
   props: ['todo'],
-  template: "\n    <div class=\"route_count col-12 mb-3 row d-flex justify-content-between\">\n        <input class=\"col-3 form-control\" type=\"time\" :value=\"todo.time\" :name=\"'route[' + todo.id + '][time]'\">\n        <input class=\"col-7 form-control\" type=\"text\" :value=\"todo.place\" :name=\"'route[' + todo.id + '][place]'\">\n        <span @click=\"remove_route(todo.id)\" class=\"btn btn-info col-1\">\u524A\u9664</span>\n    </div>",
-  methods: {
-    remove_route: function remove_route(id) {
-      new_array = [];
-      var c = 0;
-      app.route_input.forEach(function (element, i) {
-        if (id != i) {
-          new_array[c] = {
-            id: c,
-            time: element['time'],
-            place: element['place']
-          };
-          c++;
-        }
-      });
-      app.route_input = new_array;
-    }
-  }
+  template: "\n    <div class=\"route_count col-12 mb-3 row d-flex justify-content-between\">\n        <input class=\"col-3 form-control\" type=\"time\" :value=\"todo.time\" :name=\"'route[' + todo.id + '][time]'\">\n        <input class=\"col-8 form-control\" type=\"text\" :value=\"todo.place\" :name=\"'route[' + todo.id + '][place]'\">\n    </div>"
 });
 var app = new Vue({
   el: '#app',
