@@ -30,23 +30,23 @@
     <?php
         $data = [
             [
-                'id' => 1,
+                'id' => 0,
                 'time' => '10:00',
                 'place' => 'テキスト1',
             ],
             [
-                'id' => 2,
+                'id' => 1,
                 'time' => '11:00',
                 'place' => 'テキスト2',
             ],
             [
-                'id' => 3,
+                'id' => 2,
                 'time' => '12:00',
                 'place' => 'テキスト3',
             ]
         ];
         printf('<script> var data_array = %s</script>', json_encode($data)) ;
     ?>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
