@@ -12560,11 +12560,16 @@ module.exports = g;
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('input-field', {
   props: ['todo'],
-  template: "\n    <div class=\"route_count col-12 mb-3 row d-flex justify-content-between\">\n        <input class=\"col-3 form-control\" type=\"time\" :value=\"todo.time\" :name=\"'route[' + todo.id + '][time]'\">\n        <input class=\"col-7 form-control\" type=\"text\" :value=\"todo.place\" :name=\"'route[' + todo.id + '][place]'\">\n        <span @click=\"remove_route(todo.id)\" class=\"btn btn-info col-1\">\u524A\u9664</span>\n    </div>",
+  template: "\n  <div class=\"route_count col-12 mb-3 row d-flex justify-content-between\">\n      <input class=\"col-3 form-control\" type=\"time\" :value=\"todo.time\" :name=\"'route[' + todo.id + '][time]'\">\n      <input class=\"col-7 form-control\" type=\"text\" :value=\"todo.place\" :name=\"'route[' + todo.id + '][place]'\">\n      <span @click=\"remove_route(todo.id)\" class=\"btn btn-info col-1\">\u524A\u9664</span>\n  </div>",
   methods: {
     remove_route: function remove_route(id) {
       new_array = [];
       var c = 0;
+
+      if (app.route_input.length == 1) {
+        return;
+      }
+
       app.route_input.forEach(function (element, i) {
         if (id != i) {
           new_array[c] = {
@@ -12605,7 +12610,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kazuki/Webdevelop/github/vue-form/www/js/scripts.js */"./www/js/scripts.js");
+module.exports = __webpack_require__(/*! /Users/matsui/WebDevelop/wp_mamp/vue-form/www/js/scripts.js */"./www/js/scripts.js");
 
 
 /***/ })
