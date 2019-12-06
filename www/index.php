@@ -13,14 +13,11 @@
             <form class="row">
                 <div id="app" class="col-12">
                     <div class="row d-flex justify-content-between form-group mb-3">
-                        <input-field
+                        <date-field
                             v-for="item in route_input"
                             v-bind:todo="item"
                             v-bind:key="item.id"
-                        ></input-field>
-                    </div>
-                    <div class="row d-flex justify-content-around form-group">
-                        <div @click="add_route" class="btn btn-info col-2">追加</div>
+                        ></date-field>
                     </div>
                 </div>
             </form>
@@ -30,23 +27,48 @@
     <?php
         $data = [
             [
-                'id' => 0,
-                'time' => '10:00',
-                'place' => 'テキスト1',
+                'date' => 1,
+                'detail' => [
+                    [
+                        'id' => 0,
+                        'time' => '10:00',
+                        'place' => 'テキスト1',
+                    ],
+                    [
+                        'id' => 1,
+                        'time' => '11:00',
+                        'place' => 'テキスト2',
+                    ],
+                    [
+                        'id' => 2,
+                        'time' => '12:00',
+                        'place' => 'テキスト3',
+                    ]
+                ]
             ],
             [
-                'id' => 1,
-                'time' => '11:00',
-                'place' => 'テキスト2',
-            ],
-            [
-                'id' => 2,
-                'time' => '12:00',
-                'place' => 'テキスト3',
+                'date' => 2,
+                'detail' => [
+                    [
+                        'id' => 0,
+                        'time' => '10:00',
+                        'place' => 'テキスト1',
+                    ]
+                ]
             ]
         ];
-        printf('<script> var data_array = %s</script>', json_encode($data)) ;
+        printf('<script> var data_array = %s </script>', json_encode($data)) ;
     ?>
+
+    <div id="test">
+        <form>
+            <input type="text" v-model="start" v-on:change="start_change($event)">
+            <input type="text" v-model="end" v-on:change="end_change($event)">
+        </form>
+
+        {{ period }}
+    </div>
+
     <script src="/js/app.js"></script>
 </body>
 </html>
