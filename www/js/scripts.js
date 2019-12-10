@@ -4,7 +4,7 @@ require('bootstrap-css-only')
 
 
 //flatPickr
-var flatPickr = require('vue-flatpickr-component')
+const flatPickr = require('vue-flatpickr-component')
 require('flatpickr/dist/flatpickr.css')
 
 
@@ -25,7 +25,7 @@ Vue.component('date-field', {
   methods: {
     add_route: function (todo) {
       key = todo.date - 1
-      var new_id = app.route_input[key]['detail'].length
+      let new_id = app.route_input[key]['detail'].length
       app.route_input[key]['detail'].push({ id: new_id, time: '', place: '' })
     }
   }
@@ -46,7 +46,7 @@ Vue.component('detail-field', {
     remove_route: function (detail, date) {
       key = date - 1
       new_array = []
-      var c = 0
+      let c = 0
       if (app.route_input[key]['detail'].length <= 1) {
         return;
       }
@@ -67,7 +67,7 @@ Vue.component('detail-field', {
 
 
 //インスタンス
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     route_input: data_array,
