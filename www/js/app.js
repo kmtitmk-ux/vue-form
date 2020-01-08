@@ -86,6 +86,152 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resource/js/components/RouteComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resource/js/components/RouteComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"); //flatPickr
+
+
+var flatPickr = __webpack_require__(/*! vue-flatpickr-component */ "./node_modules/vue-flatpickr-component/dist/vue-flatpickr.min.js");
+
+__webpack_require__(/*! flatpickr/dist/flatpickr.css */ "./node_modules/flatpickr/dist/flatpickr.css");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      route_input: data_array,
+      start: null,
+      end: null,
+      period: null,
+      config: {
+        minDate: "today"
+      },
+      date_error: "&nbsp"
+    };
+  },
+  components: {
+    flatPickr: flatPickr
+  },
+  methods: {
+    change_date: function change_date(type, e) {
+      if (type == "start") {
+        this.start = moment(e[0]).format("YYYY-MM-DD");
+      } else {
+        this.end = moment(e[0]).format("YYYY-MM-DD");
+      }
+
+      this.period = moment(this.end).diff(moment(this.start), "days"); //エラーの場合
+
+      if (this.start && this.end) {
+        if (this.period < 0) {
+          this.date_error = '<span class="text-danger">正しい日付を選択してください。</span>';
+          return;
+        } else {
+          this.date_error = "&nbsp";
+        } //追加
+
+
+        for (var i = 0; i <= this.period; i++) {
+          if (this.route_input[i] === void 0) {
+            this.route_input.push({
+              date: i + 1,
+              detail: [{
+                id: 0,
+                time: "",
+                place: ""
+              }]
+            });
+          }
+        } //削除
+
+
+        this.route_input.splice(this.period + 1);
+      }
+    }
+  }
+});
+Vue.component("date-field", {
+  props: ["todo"],
+  template: "\n    <div class=\"form-group col-12 mb-5\">\n        <label>{{ todo.date }}\u65E5\u76EE</label>\n        <detail-field\n        v-for=\"item in todo.detail\"\n        v-bind:detail=\"item\"\n        v-bind:key=\"item.id\"\n        v-bind:date=\"todo.date\"\n        ></detail-field>\n        <div @click=\"add_route(todo)\" class=\"text-center btn btn-info mt-4\">\u30EB\u30FC\u30C8\u306E\u8FFD\u52A0</div>\n    </div>",
+  methods: {
+    add_route: function add_route(todo) {
+      var key = todo.date - 1;
+      var new_id = this.$parent.route_input[key]["detail"].length;
+      this.$parent.route_input[key]["detail"].push({
+        id: new_id,
+        time: "",
+        place: ""
+      });
+    }
+  }
+});
+Vue.component("detail-field", {
+  props: ["date", "detail"],
+  template: "\n  <div class=\"row mb-3 justify-content-between\">\n    <input class=\"form-control col-5\" type=\"text\" v-bind:value=\"detail.place\" v-bind:name=\"set_name(date, detail, 'place')\">\n    <input class=\"form-control col-5\" type=\"time\" v-bind:value=\"detail.time\" v-bind:name=\"set_name(date, detail, 'time')\">\n    <span class=\"btn btn-light col-1\" @click=\"remove_route(detail, date)\">\u524A\u9664</span>\n  </div>\n  ",
+  methods: {
+    set_name: function set_name(date, detail, type) {
+      return "route[" + date + "][" + detail.id + "][" + type + "]";
+    },
+    remove_route: function remove_route(detail, date) {
+      var key = date - 1;
+      var new_array = [];
+      var c = 0;
+
+      if (this.$parent.$parent.route_input[key]["detail"].length <= 1) {
+        return;
+      }
+
+      this.$parent.$parent.route_input[key]["detail"].forEach(function (element, i) {
+        if (detail.id != i) {
+          new_array[c] = {
+            id: c,
+            time: element["time"],
+            place: element["place"]
+          };
+          c++;
+        }
+      });
+      this.$parent.$parent.route_input[key]["detail"] = new_array;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-css-only/css/bootstrap.min.css":
 /*!***************************************************************!*\
   !*** ./node_modules/bootstrap-css-only/css/bootstrap.min.css ***!
@@ -21479,6 +21625,220 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-12" },
+    [
+      _c("div", { staticClass: "form-group col-12 mb-5" }, [
+        _c("label", [_vm._v("予定日")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row justify-content-between" },
+          [
+            _c("flat-pickr", {
+              staticClass: "form-control col-5",
+              attrs: {
+                placeholder: "開催日を選択してください",
+                name: "period[]",
+                config: _vm.config
+              },
+              on: {
+                "on-change": function($event) {
+                  return _vm.change_date("start", $event)
+                }
+              },
+              model: {
+                value: _vm.start,
+                callback: function($$v) {
+                  _vm.start = $$v
+                },
+                expression: "start"
+              }
+            }),
+            _vm._v(" "),
+            _c("flat-pickr", {
+              staticClass: "form-control col-5",
+              attrs: {
+                placeholder: "終了日を選択してください",
+                name: "period[]",
+                config: _vm.config
+              },
+              on: {
+                "on-change": function($event) {
+                  return _vm.change_date("end", $event)
+                }
+              },
+              model: {
+                value: _vm.end,
+                callback: function($$v) {
+                  _vm.end = $$v
+                },
+                expression: "end"
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "col-1" })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("p", { domProps: { innerHTML: _vm._s(_vm.date_error) } }, [
+          _vm._v(" ")
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.route_input, function(item) {
+        return _c("date-field", { key: item.id, attrs: { todo: item } })
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("保存")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/vue/dist/vue.common.dev.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue/dist/vue.common.dev.js ***!
@@ -33508,135 +33868,101 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./www/js/scripts.js":
-/*!***************************!*\
-  !*** ./www/js/scripts.js ***!
-  \***************************/
+/***/ "./resource/js/app.js":
+/*!****************************!*\
+  !*** ./resource/js/app.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
-var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+__webpack_require__(/*! bootstrap-css-only */ "./node_modules/bootstrap-css-only/css/bootstrap.min.css");
 
-__webpack_require__(/*! bootstrap-css-only */ "./node_modules/bootstrap-css-only/css/bootstrap.min.css"); //flatPickr
-
-
-var flatPickr = __webpack_require__(/*! vue-flatpickr-component */ "./node_modules/vue-flatpickr-component/dist/vue-flatpickr.min.js");
-
-__webpack_require__(/*! flatpickr/dist/flatpickr.css */ "./node_modules/flatpickr/dist/flatpickr.css"); //component
-
-
-Vue.component('date-field', {
-  props: ['todo'],
-  template: "\n  <div class=\"form-group col-12 mb-5\">\n    <label>{{ todo.date }}\u65E5\u76EE</label>\n    <detail-field\n      v-for=\"item in todo.detail\"\n      v-bind:detail=\"item\"\n      v-bind:key=\"item.id\"\n      v-bind:date=\"todo.date\"\n    ></detail-field>\n    <div @click=\"add_route(todo)\" class=\"text-center btn btn-info mt-4\">\u30EB\u30FC\u30C8\u306E\u8FFD\u52A0</div>\n  </div>",
-  methods: {
-    add_route: function add_route(todo) {
-      key = todo.date - 1;
-      var new_id = app.route_input[key]['detail'].length;
-      app.route_input[key]['detail'].push({
-        id: new_id,
-        time: '',
-        place: ''
-      });
-    }
-  }
-});
-Vue.component('detail-field', {
-  props: ['date', 'detail'],
-  template: "\n  <div class=\"row mb-3 justify-content-between\">\n    <input class=\"form-control col-5\" type=\"text\" v-bind:value=\"detail.place\" v-bind:name=\"set_name(date, detail, 'place')\">\n    <input class=\"form-control col-5\" type=\"time\" v-bind:value=\"detail.time\" v-bind:name=\"set_name(date, detail, 'time')\">\n    <span class=\"btn btn-light col-1\" @click=\"remove_route(detail, date)\">\u524A\u9664</span>\n  </div>\n  ",
-  methods: {
-    set_name: function set_name(date, detail, type) {
-      return 'route[' + date + '][' + detail.id + '][' + type + ']';
-    },
-    remove_route: function remove_route(detail, date) {
-      key = date - 1;
-      new_array = [];
-      var c = 0;
-
-      if (app.route_input[key]['detail'].length <= 1) {
-        return;
-      }
-
-      app.route_input[key]['detail'].forEach(function (element, i) {
-        if (detail.id != i) {
-          new_array[c] = {
-            id: c,
-            time: element['time'],
-            place: element['place']
-          };
-          c++;
-        }
-      });
-      app.route_input[key]['detail'] = new_array;
-    }
-  }
-}); //インスタンス
-
+Vue.component('route-component', __webpack_require__(/*! ./components/RouteComponent.vue */ "./resource/js/components/RouteComponent.vue")["default"]);
 var app = new Vue({
-  el: '#app',
-  data: {
-    route_input: data_array,
-    start: null,
-    end: null,
-    period: null,
-    config: {
-      minDate: "today"
-    },
-    date_error: "&nbsp"
-  },
-  components: {
-    flatPickr: flatPickr
-  },
-  methods: {
-    change_date: function change_date(type, e) {
-      if (type == 'start') {
-        this.start = moment(e[0]).format("YYYY-MM-DD");
-      } else {
-        this.end = moment(e[0]).format("YYYY-MM-DD");
-      }
-
-      this.period = moment(this.end).diff(moment(this.start), 'days'); //エラーの場合
-
-      if (this.start && this.end) {
-        if (this.period < 0) {
-          this.date_error = '<span class="text-danger">正しい日付を選択してください。</span>';
-          return;
-        } else {
-          this.date_error = "&nbsp";
-        } //追加
-
-
-        for (var i = 0; i <= this.period; i++) {
-          if (this.route_input[i] === void 0) {
-            this.route_input.push({
-              date: i + 1,
-              detail: [{
-                id: 0,
-                time: '',
-                place: ''
-              }]
-            });
-          }
-        } //削除
-
-
-        this.route_input.splice(this.period + 1);
-      }
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),
 
+/***/ "./resource/js/components/RouteComponent.vue":
+/*!***************************************************!*\
+  !*** ./resource/js/components/RouteComponent.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RouteComponent.vue?vue&type=template&id=f2187d2c& */ "./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c&");
+/* harmony import */ var _RouteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RouteComponent.vue?vue&type=script&lang=js& */ "./resource/js/components/RouteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RouteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resource/js/components/RouteComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resource/js/components/RouteComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resource/js/components/RouteComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RouteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RouteComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resource/js/components/RouteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RouteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c&":
+/*!**********************************************************************************!*\
+  !*** ./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RouteComponent.vue?vue&type=template&id=f2187d2c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resource/js/components/RouteComponent.vue?vue&type=template&id=f2187d2c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RouteComponent_vue_vue_type_template_id_f2187d2c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ 0:
-/*!*********************************!*\
-  !*** multi ./www/js/scripts.js ***!
-  \*********************************/
+/*!**********************************!*\
+  !*** multi ./resource/js/app.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/matsui/WebDevelop/wp_mamp/vue-form/www/js/scripts.js */"./www/js/scripts.js");
+module.exports = __webpack_require__(/*! /Users/matsui/WebDevelop/wp_mamp/vue-form/resource/js/app.js */"./resource/js/app.js");
 
 
 /***/ })
